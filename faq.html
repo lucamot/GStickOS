@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GStickOS - FAQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function toggleAnswer(id, symbolId) {
+            const answer = document.getElementById(id);
+            const symbol = document.getElementById(symbolId);
+            answer.classList.toggle('hidden');
+            // Rotate the symbol when the answer is visible
+            symbol.classList.toggle('rotate-90');
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">GStickOS</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
+                    <li><a href="faq.html" class="hover:text-yellow-400">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container mx-auto py-12">
+        <h2 class="text-4xl font-bold text-center">FAQ</h2>
+        <div class="space-y-8 mt-8">
+            <div class="mt-6">
+                <div style="display: flex"><a style="margin: auto" href="https://www.buymeacoffee.com/lucamot"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=lucamot&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a></div>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer1', 'symbol1')">
+                    <span id="symbol1" class="mr-2 transition-transform">></span>
+                    What is GStickOS?
+                </h3>
+                <p id="answer1" class="mt-2 text-lg hidden">GStickOS is a lightweight distribution aiming at replacing the original Game Stick 4K Lite firmware. It uses Retroarch as frontend instead of the original UI</p>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer2', 'symbol2')">
+                    <span id="symbol2" class="mr-2 transition-transform">></span>
+                    How do I install GStickOS?
+                </h3>
+                <p id="answer2" class="mt-2 text-lg hidden">To install GStickOS, download the latest image file from the website and flash it to an SD. Depending on your OS and your level of expertise there are different options to flash the image on a SD card, however if you don't know how to start try with this: <a href="https://win32diskimager.org/">Win32 disk image</a>. Be sure to have an SD card that is 2GB or more and remember that all the data on the SD will be wiped when you flash the image (there's no turning back!)</p>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer3', 'symbol3')">
+                    <span id="symbol3" class="mr-2 transition-transform">></span>
+                    Is GStickOS compatible with my hardware?
+                </h3>
+                <p id="answer3" class="mt-2 text-lg hidden">Well, it depends: I created it for my own Game Stick 4K Lite which has a Hi3798mv100 SoC with 256MB of RAM. As far as I can tell there are several versions of the same game stick and they all look almost the same but have different hardware release. You can tell you have a compatible stick if under System Information of the original firmware you have a version that says "SEGAM-M8 2024-10-15" or something similar. Provided you have a backup of your original SD you can always try using the image, it won't do any damage: if it's compatible you'll see Retroarch UI after you power it up.</p>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer11', 'symbol11')">
+                    <span id="symbol11" class="mr-2 transition-transform">></span>
+                    Will GStickOS makes permanent changes to my stick?
+                </h3>
+                <p id="answer11" class="mt-2 text-lg hidden">No. You can always revert to the original stick by replacing the SD with the original one. Everything is saved on the SD card, the stick isn't touched in any way.</p>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer4', 'symbol4')">
+                    <span id="symbol4" class="mr-2 transition-transform">></span>
+                    How can I update GStickOS?
+                </h3>
+                <p id="answer4" class="mt-2 text-lg hidden">Updates for GStickOS can be installed via our built-in update system. Simply check for updates in the settings menu and follow the prompts to keep your system up to date.</p>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer10', 'symbol10')">
+                    <span id="symbol10" class="mr-2 transition-transform">></span>
+                    Is there a guide on how to use it?
+                </h3>
+                <p id="answer10" class="mt-2 text-lg hidden">No, not at the moment: you are on your own experimenting with it. There might be one in the future.</p>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer5', 'symbol5')">
+                    <span id="symbol5" class="mr-2 transition-transform">></span>
+                    What about games? Are there any included?
+                </h3>
+                <p id="answer5" class="mt-2 text-lg hidden">No, there are no ROMs included in the image: this would be a copyright violation of some sorts and you have to provide your own ROMs</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer6', 'symbol6')">
+                    <span id="symbol6" class="mr-2 transition-transform">></span>
+                    How can I play games?
+                </h3>
+                <p id="answer6" class="mt-2 text-lg hidden">You need ROMs for that. To load ROMs you can plug an USB stick and it will be automatically mounted by the system, you'll find it navigating with Retroarch file browser under /mnt/sdXY. You can simply plug a vFAT formatted USB key and you should see every file you have inside there. What to load on the USB key is outside the scope of this brief FAQ, you should look at Retroarch documentation to know more about loading games, ROMs compatibility lists etc.</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer7', 'symbol7')">
+                    <span id="symbol7" class="mr-2 transition-transform">></span>
+                    Is there WiFi connection?
+                </h3>
+                <div id="answer7" class="mt-2 text-lg hidden">Yes, sort of: if you plug a WiFi dongle there a popular driver I built and loaded for it (RTL8188eu), if WiFi dongle has this chip you're good to go. To configure the SSID/password you have to put a wpa_supplicant.conf file in the root folder of a USB stick, plug it in and then reboot after a few seconds. GStickOS looks for wpa_supplicant.conf file in every USB device as soon as you plug it in, if it founds one it will replace the internal configuration with the one provided. This is a sample wpa_supplicant.conf file, update as needed:
+                    <code><pre class="mt-2">
+ctrl_interface=/var/run/wpa_supplicant
+update_config=1
+country=IT
+network={
+ ssid="my_1st_network"
+ psk="MyPassword1"
+}
+
+network={
+ ssid="my_2nd_network"
+ psk="MyPassword1"
+}
+                        </pre></code>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer8', 'symbol8')">
+                    <span id="symbol8" class="mr-2 transition-transform">></span>
+                    Why this page is so ugly?
+                </h3>
+                <p id="answer8" class="mt-2 text-lg hidden">That's because I don't like making web pages. Seriously: it takes a lot of time to build a compelling web page and at the moment I don't have much. You'll free to contribute anyway, if you want to update it somehow let me know!</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer9', 'symbol9')">
+                    <span id="symbol9" class="mr-2 transition-transform">></span>
+                    I have so many questions, how can I contact you?
+                </h3>
+                <p id="answer9" class="mt-2 text-lg hidden"><iframe src="https://discord.com/widget?id=1352581880762859631&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 p-4 text-center">
+        <p>&copy; 2025 GStickOS. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
