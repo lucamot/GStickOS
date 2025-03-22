@@ -5,26 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GStickOS - Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
-<style>
-  .disabled-link {
-    color: #ccc; /* Light grey color for the disabled look */
-    pointer-events: none; /* Prevents clicking */
-    text-decoration: none; /* Removes underline */
-    cursor: not-allowed; /* Makes the cursor show as "not-allowed" */
-  }
-
-  .disabled-link:hover {
-    color: #ccc; /* Ensure it stays grey when hovered */
-  }
-</style>
 </head>
 <body class="bg-gray-900 text-white">
     <header class="bg-gray-800 p-4">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold">GStickOS</h1>
+            <div class="flex items-center space-x-4">
+                <img src="img/gstickos.jpg" alt="GStickOS Logo" class="h-10 rounded-lg object-contain">
+                <h1 class="text-2xl font-bold"><a href="index.html">GStickOS</a></h1>
+            </div>
             <nav>
                 <ul class="flex space-x-4">
-                    <li><a href="index.html" class="hover:text-yellow-400">Home</a></li>
                     <li><a href="faq.html" class="hover:text-yellow-400">FAQ</a></li>
                 </ul>
             </nav>
@@ -35,10 +25,10 @@
         <h2 class="text-5xl font-bold">Welcome to GStickOS</h2>
         <p class="mt-4 text-lg">A lightweight, ready-to-use retro gaming system.</p>
         <div class="mt-6">
-            <a href="#" class="disabled-link bg-yellow-400 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500">Coming soon...</a>
+            <a href="https://github.com/lucamot/GStickOS/releases/download/GStickOS/GStickOS-1.0.0.zip" class="bg-yellow-400 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500">Download GStickOS</a>
         </div>
         <div class="mt-6 max-w-3xl mx-auto text-left">
-            <p class="text-lg">GStickOS is a custom firmware/image for Game Sticks 4K Lite that allows you to play retro games using RetroArch. The system is designed to boot directly into RetroArch, providing a seamless gaming experience.</p>
+            <p class="text-lg">GStickOS is a custom firmware/image for Game Stick 4K Lite that allows you to play retro games using RetroArch. The system is designed to boot directly into RetroArch, providing a seamless gaming experience.</p>
             
             <p class="mt-4 font-bold text-xl">Features:</p>
             <ul class="list-disc list-inside mt-2 space-y-2">
@@ -49,6 +39,13 @@
                 <li>Supports WiFi connectivity via an external USB WiFi dongle.</li>
                 <li>No ROMs or copyrighted materials are included.</li>
             </ul>
+
+            <p class="mt-4 font-bold text-xl">How to install:</p>
+            <ol class="list-disc list-inside mt-2 space-y-2">
+                <li>Download <a style="text-decoration: underline" href="https://github.com/lucamot/GStickOS/releases/download/GStickOS/GStickOS-1.0.0.zip">GStickOS image</a> and unzip it.</li>
+                <li>Flash the image to an SD card with <a style="text-decoration: underline" href="https://win32diskimager.org">Win32 Disk Image</a> or similar.</li>
+                <li>Put the SD on your Game Stick Lite 4K and start playing!</li>
+            </ol>
         </div>
         <div class="mt-6">
             <div style="display: flex"><a style="margin: auto" href="https://www.buymeacoffee.com/lucamot"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=lucamot&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a></div>
