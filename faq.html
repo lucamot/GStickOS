@@ -142,6 +142,22 @@ network={
                 <p id="answer13" class="mt-2 text-lg hidden">That's ok: grab yourself a program that is able to copy files over SCP (e.g. WinSCP) and use the root password above to transfer the files. My suggestion is to copy all the files under <code>/mnt/ext</code>, which is the largest partition on the SD (it's roughly the size of the SD minus 138MB). You can later see the files from the Retroarch UI by navigating again to <code>/mnt/ext</code> or wherever you put your files.</p>
             </div>
             <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer14', 'symbols14')">
+                    <span id="symbols14" class="mr-2 transition-transform">></span>
+                    I want to hack GStickOS
+                </h3>
+                <p id="answer14" class="mt-2 text-lg hidden">Fair enough, as long as you share your improvements with us :) Here are a few hints to get started:</p>
+                <ul>
+                    <li>Use Linux. A virtual machine with it it's ok too. Don't use Windows, you'll regret it</li>
+                    <li>GStickOS is Busybox based. This, among other things, means you have to be comortable using the CLI</li>
+                    <li>The SD is not mounted without your intervention: without being too technical, this is due to how they build the hardware of the stick and cannote be changed easily (you should flash a custom bootloader on an internal unlabelled chip, if you're into it let me know)</li>
+                    <li>The SD contains two partitions: a root fs and and extended partition. To mount them you have to specify an offset to the <code>mount</code> command. The offsets you need are 10MB and 138MB. Say you want to mount the extended partition, the command is <code>sudo mount -oloop,offset=$((138 * 1024 * 1024)) /dev/sdX /media/sd</code>. Be sure to specify the correct path of the sd (i.e. replace <code>/dev/sdX</code>) and mount point (i.e. <code>/media/sd</code>)</li>
+                    <li>Everything is built from scratch with a custom toolchain, from the base OS (Busybox) to Retroarch and its cores. I made a docker image of the toolchain (<a href="https://github.com/lucamot/HiSTBLinuxV100R005C00SPC050">here</a>) with wich you should be able to recompile everything, kernel included. A word of warning: using toolchains is the first step down the rabbit hole. My only clue here is that after you load the docker image you should source the <code>env.sh</code> file.</li>
+                    <li>Most cores build without modification: this mean that if you have your docker container running (and <code>env.sh</code> sourced) you should be able to just <code>make</code> them all. Some of them require small to big changes though, from updating some configurations to recompiling libraries and frameworks.</li>
+                    <li>It's easy to be stuck with the toolchain, especially because it's based on an older GCC (4.9.2) and the equivalent glibc. Reach the Discord channel if you want to ask questions, I'm not always there but I can try answer your questions.</li>
+                </ul>
+            </div>
+            <div>
                 <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer9', 'symbol9')">
                     <span id="symbol9" class="mr-2 transition-transform">></span>
                     I have so many questions, how can I contact you?
