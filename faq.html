@@ -148,9 +148,9 @@ network={
                 </h3>
                 <div id="answer14" class="hidden">
                     <p class="mt-2 text-lg">Fair enough, as long as you share your improvements with us :) Here are a few hints to get started:</p>
-                    <ul>
+                    <ul style="list-style: circle">
                         <li>Use Linux. A virtual machine with it it's ok too. Don't use Windows, you'll regret it</li>
-                        <li>GStickOS is Busybox based. This, among other things, means you have to be comortable using the CLI</li>
+                        <li>GStickOS is Busybox based. This, among other things, means you have to be comfortable using the CLI</li>
                         <li>The SD is not mounted without your intervention: without being too technical, this is due to how they build the hardware of the stick and cannote be changed easily (you should flash a custom bootloader on an internal unlabelled chip, if you're into it let me know)</li>
                         <li>The SD contains two partitions: a root fs and and extended partition. To mount them you have to specify an offset to the <code>mount</code> command. The offsets you need are 10MB and 138MB. Say you want to mount the extended partition, the command is <code>sudo mount -oloop,offset=$((138 * 1024 * 1024)) /dev/sdX /media/sd</code>. Be sure to specify the correct path of the sd (i.e. replace <code>/dev/sdX</code>) and mount point (i.e. <code>/media/sd</code>)</li>
                         <li>Everything is built from scratch with a custom toolchain, from the base OS (Busybox) to Retroarch and its cores. I made a docker image of the toolchain (<a href="https://github.com/lucamot/HiSTBLinuxV100R005C00SPC050">here</a>) with wich you should be able to recompile everything, kernel included. A word of warning: using toolchains is the first step down the rabbit hole. My only clue here is that after you load the docker image you should source the <code>env.sh</code> file.</li>
