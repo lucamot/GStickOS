@@ -146,7 +146,7 @@ network={
                     <span id="symbols14" class="mr-2 transition-transform">></span>
                     I want to hack GStickOS
                 </h3>
-                <p id="answer14" class="mt-2 text-lg hidden">Fair enough, as long as you share your improvements with us :) Here are a few hints to get started:</p>
+                <p id="answer14" class="mt-2 text-lg hidden">Fair enough, as long as you share your improvements with us :) Here are a few hints to get started:
                 <ul>
                     <li>Use Linux. A virtual machine with it it's ok too. Don't use Windows, you'll regret it</li>
                     <li>GStickOS is Busybox based. This, among other things, means you have to be comortable using the CLI</li>
@@ -155,7 +155,7 @@ network={
                     <li>Everything is built from scratch with a custom toolchain, from the base OS (Busybox) to Retroarch and its cores. I made a docker image of the toolchain (<a href="https://github.com/lucamot/HiSTBLinuxV100R005C00SPC050">here</a>) with wich you should be able to recompile everything, kernel included. A word of warning: using toolchains is the first step down the rabbit hole. My only clue here is that after you load the docker image you should source the <code>env.sh</code> file.</li>
                     <li>Most cores build without modification: this mean that if you have your docker container running (and <code>env.sh</code> sourced) you should be able to just <code>make</code> them all. Some of them require small to big changes though, from updating some configurations to recompiling libraries and frameworks.</li>
                     <li>It's easy to be stuck with the toolchain, especially because it's based on an older GCC (4.9.2) and the equivalent glibc. Reach the Discord channel if you want to ask questions, I'm not always there but I can try answer your questions.</li>
-                </ul>
+                </ul></p>
             </div>
             <div>
                 <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer9', 'symbol9')">
