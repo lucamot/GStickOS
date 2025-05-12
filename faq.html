@@ -139,7 +139,25 @@ network={
                     <span id="symbols13" class="mr-2 transition-transform">></span>
                     I want to copy some files to the SD
                 </h3>
-                <p id="answer13" class="mt-2 text-lg hidden">That's ok: grab yourself a program that is able to copy files over SCP (e.g. WinSCP) and use the root password above to transfer the files. My suggestion is to copy all the files under <code>/mnt/ext</code>, which is the largest partition on the SD (it's roughly the size of the SD minus 138MB). You can later see the files from the Retroarch UI by navigating again to <code>/mnt/ext</code> or wherever you put your files.</p>
+                <p id="answer13" class="mt-2 text-lg hidden">That's ok: grab yourself a program that is able to copy files over SCP (e.g. WinSCP) and use the root password above to transfer the files. My suggestion is to copy all the files under <code>/mnt/extended</code>, which is the largest partition on the SD. You can later see the files from the Retroarch UI by navigating again to <code>/mnt/extended</code> or wherever you put your files.</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer15', 'symbols15')">
+                    <span id="symbols13" class="mr-2 transition-transform">></span>
+                    The extended partition is not large enough!
+                </h3>
+                <div id="answer15" class="hidden">
+                    <p class="mt-2 text-lg">The extended partition (mounted under <code>/mnt/extended/</code>) is as big as the image you downloaded. If you put it on large SD (e.g. &gt; 2GB) you can resize the partition to take the full available space. It involves entering some commands on the terminal, there's no easy way yet:</p>
+                    <ul style="list-style: circle">
+                        <li>ssh into the stick from a terminal (yes, in this weird world even windows powershell can do ssh): "ssh root@STICK_IP", replacing with the IP of the stick on your network. The password is <code>gstickos</code></li>
+                        <li>enter the command <code>ps | grep retroarch</code> and note the first column of the first two rows (two numbers, usually something in the 1000 range). Let's say you got 1262 and 1272</li>
+                        <li>type <code>kill -9 1262 1272</code> with the numbers from the step above. This will kill retroarch (it's ok)</li>
+                        <li>type <code>umount /mnt/extended</code></li>
+                        <li>type <code>resize2f /mnt/mmcblk0p5</code></li>
+                        <li>wait, it might take long to finish: you can tell it did finish when a message starting with "The filesystem size is now" is shown</li>
+                        <li>type <code>reboot</code>, the stick will reboot and you should have your whole SD available</li>
+                    </ul>
+                </div>
             </div>
             <div>
                 <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer14', 'symbols14')">
