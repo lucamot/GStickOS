@@ -201,15 +201,29 @@
           and its cores. If it saves your evening, the best thanks is a small one.
         </p>
         <div class="support-grid" style="margin-top:1.8rem;">
-          <a class="support-card rv" href="https://www.buymeacoffee.com/lucamot" target="_blank" rel="noopener" aria-label="Support GStickOS on Buy Me a Coffee">
+          <!-- 1: buy me a coffee -->
+          <a class="support-card rv bmaco-card" href="https://www.buymeacoffee.com/lucamot" target="_blank" rel="noopener" aria-label="Support GStickOS on Buy Me a Coffee">
             <img class="bmaco-img" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=lucamot&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" alt="Buy me a coffee" width="420" height="64" loading="lazy">
           </a>
+          <!-- 2: source & toolchain -->
           <div class="support-card rv">
             <h3>Source &amp; toolchain</h3>
             <p>Everything is built from a custom toolchain. The docker image with the full build
                environment is on GitHub — recompile the whole thing, kernel included.</p>
-            <p class="support-link"><a href="https://github.com/lucamot/GStickOS" target="_blank" rel="noopener">GStickOS source →</a></p>
-            <p class="support-link"><a href="https://github.com/lucamot/HiSTBLinuxV100R005C00SPC050" target="_blank" rel="noopener">HiSTBLinuxV100R005C00SPC050 →</a></p>
+          </div>
+          <!-- 3: GStickOS source -->
+          <div class="support-card rv">
+            <h3>GStickOS source</h3>
+            <p>The complete source of the image: kernel, RetroArch, the ~50 Libretro cores,
+               and the build scripts.</p>
+            <p class="support-link"><a href="https://github.com/lucamot/GStickOS" target="_blank" rel="noopener">GStickOS &rarr;</a></p>
+          </div>
+          <!-- 4: HiSTBLinux base -->
+          <div class="support-card rv">
+            <h3>HiSTBLinux base</h3>
+            <p>The HiSTBLinuxV100R005C00SPC050 base OS for the Hi3798MV100 stick — the BusyBox
+               root that GStickOS is built on.</p>
+            <p class="support-link"><a href="https://github.com/lucamot/HiSTBLinuxV100R005C00SPC050" target="_blank" rel="noopener">HiSTBLinuxV100R005C00SPC050 &rarr;</a></p>
           </div>
         </div>
       </div>
