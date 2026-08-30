@@ -1,60 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GStickOS - Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GStickOS — Home</title>
+  <meta name="description" content="GStickOS is a lightweight, ready-to-use retro gaming system: a custom image for the Game Stick 4K Lite that boots straight into RetroArch.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" sizes="16x16" href="img/favicon-16.png">
+  <link rel="icon" sizes="32x32" href="img/favicon-32.png">
+  <!-- social card -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GStickOS">
+  <meta property="og:title" content="GStickOS — retro gaming, ready to boot">
+  <meta property="og:description" content="A lightweight, ready-to-use retro gaming system for the Game Stick 4K Lite.">
+  <meta property="og:image" content="img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0a0c12">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "GStickOS",
+    "url": "/",
+    "operatingSystem": "Linux (BusyBox)",
+    "applicationCategory": "OperatingSystem",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
 </head>
-<body class="bg-gray-900 text-white">
-    <header class="bg-gray-800 p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-4">
-                <img src="img/gstickos.jpg" alt="GStickOS Logo" class="h-10 rounded-lg object-contain">
-                <h1 class="text-2xl font-bold"><a href="index.html">GStickOS</a></h1>
-            </div>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="faq.html" class="hover:text-yellow-400">FAQ</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    
-    <main class="container mx-auto py-12 text-center">
-        <h2 class="text-5xl font-bold">Welcome to GStickOS</h2>
-        <p class="mt-4 text-lg">A lightweight, ready-to-use retro gaming system.</p>
-        <div class="mt-6">
-            <a href="https://github.com/lucamot/GStickOS/releases/download/v1.0.1/GStickOS-1.0.1.zip" class="bg-yellow-400 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500">Download GStickOS</a>
-        </div>
-        <div class="mt-6 max-w-3xl mx-auto text-left">
-            <p class="text-lg">GStickOS is a custom firmware/image for Game Stick 4K Lite that allows you to play retro games using RetroArch. The system is designed to boot directly into RetroArch, providing a seamless gaming experience.</p>
-            
-            <p class="mt-4 font-bold text-xl">Features:</p>
-            <ul class="list-disc list-inside mt-2 space-y-2">
-                <li>Boots directly into RetroArch for an instant gaming experience.</li>
-                <li>Supports external USB storage for adding game ROMs.</li>
-                <li>Includes around 50 Libretro cores, with the ability to add more.</li>
-                <li>SSH server enabled for remote access.</li>
-                <li>Supports WiFi connectivity via an external USB WiFi dongle.</li>
-                <li>No ROMs or copyrighted materials are included.</li>
-            </ul>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scanlines" aria-hidden="true"></div>
 
-            <p class="mt-4 font-bold text-xl">How to install:</p>
-            <ol class="list-disc list-inside mt-2 space-y-2">
-                <li>Download <a style="text-decoration: underline" href="https://github.com/lucamot/GStickOS/releases/download/v1.0.1/GStickOS-1.0.1.zip">GStickOS image</a> and unzip it.</li>
-                <li>Flash the image to an SD card with <a style="text-decoration: underline" href="https://win32diskimager.org">Win32 Disk Image</a> or similar.</li>
-                <li>Put the SD on your Game Stick Lite 4K and start playing!</li>
+  <!-- top marquee strip -->
+  <div class="topbar" aria-hidden="true">
+    <div class="track">
+      <span class="seg">★ <b>GSTICKOS v1.0.1</b> &nbsp;·&nbsp; GAME STICK 4K LITE &nbsp;·&nbsp; HI3798MV100 &nbsp;·&nbsp; <b>RETROARCH READY</b> &nbsp;·&nbsp; BOOT IN &lt; 10s &nbsp;·&nbsp; </span>
+      <span class="seg">★ <b>GSTICKOS v1.0.1</b> &nbsp;·&nbsp; GAME STICK 4K LITE &nbsp;·&nbsp; HI3798MV100 &nbsp;·&nbsp; <b>RETROARCH READY</b> &nbsp;·&nbsp; BOOT IN &lt; 10s &nbsp;·&nbsp; </span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container bar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"><img src="img/gstickos.jpg" alt="" width="48" height="48"></span>
+        <span class="brand-name">GSTICK<b>OS</b></span>
+      </a>
+      <nav aria-label="Main">
+        <ul class="nav" style="list-style:none;margin:0;padding:0;display:flex;gap:1.5rem;">
+          <li><a href="index.html" data-nav="index.html">HOME</a></li>
+          <li><a href="faq.html" data-nav="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="kicker">custom firmware · game stick 4k lite</span>
+          <h1 class="hero-title">GSTICK<span class="caret">_</span><br>OS</h1>
+          <p class="hero-tagline">A lightweight, ready-to-use retro gaming system.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://github.com/lucamot/GStickOS/releases/download/v1.0.1/GStickOS-1.0.1.zip">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+              DOWNLOAD GSTICKOS
+            </a>
+            <a class="btn btn-ghost" href="faq.html">READ THE FAQ</a>
+          </div>
+          <ul class="meta-chips">
+            <li><b>v1.0.1</b> image</li>
+            <li>~<b>50</b> libretro cores</li>
+            <li><b>2 GB</b> min SD</li>
+            <li>free · open build</li>
+          </ul>
+        </div>
+
+        <div class="boot-card" data-boot-seq aria-hidden="true">
+          <div class="head"><span>// boot log</span><span>root@gstickos</span></div>
+          <div class="boot-line" data-final="&lt; ok &gt; <span class='ok'>kernel</span>          linux v100 · hi3798mv100">&lt; ok &gt; <span class="ok">kernel</span>          linux v100 · hi3798mv100</div>
+          <div class="boot-line" data-final="&lt; ok &gt; <span class='ok'>filesystem</span>      busybox init">&lt; ok &gt; <span class="ok">filesystem</span>      busybox init</div>
+          <div class="boot-line" data-final="&lt; ok &gt; <span class='ok'>retroarch</span>       50 cores mounted">&lt; ok &gt; <span class="ok">retroarch</span>       50 cores mounted</div>
+          <div class="boot-line" data-final="&lt; ok &gt; <span class='ok'>ssh</span>             server enabled · root/gstickos">&lt; ok &gt; <span class="ok">ssh</span>             server enabled · root/gstickos</div>
+          <div class="boot-line" data-final="&lt; ok &gt; <span class='ok'>usb storage</span>     /mnt ready · auto-mount on">&lt; ok &gt; <span class="ok">usb storage</span>     /mnt ready · auto-mount on</div>
+          <div class="boot-line" data-final="&lt; ok &gt; <span class='ok'>wifi</span>            rtl8188eu driver loaded">&lt; ok &gt; <span class="ok">wifi</span>            rtl8188eu driver loaded</div>
+          <div class="boot-line boot-ready" data-final="GStickOS v1.0.1 — booting to RetroArch...<span class='cur'>▊</span>">GStickOS v1.0.1 — booting to RetroArch...<span class="cur">▊</span></div>
+          <div class="boot-ver">image: gstickos-1.0.1.zip · flash &amp; play</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section section-tight" id="about">
+      <div class="container">
+        <span class="kicker rv">what is this</span>
+        <h2 class="section-title rv">One job, done right: boot straight into RetroArch.</h2>
+        <p class="lead rv" style="margin-top:1rem;">
+          GStickOS is a custom firmware/image for Game Stick 4K Lite that allows you to play retro games
+          using RetroArch. The system is designed to boot directly into RetroArch, providing a seamless
+          gaming experience.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURES ===================== -->
+    <section class="section" id="features">
+      <div class="container">
+        <span class="kicker rv">spec sheet</span>
+        <h2 class="section-title rv">Everything you need. Nothing you have to manage.</h2>
+        <div class="card-grid" style="margin-top:2.2rem;">
+          <article class="card rv">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="7" width="20" height="12" rx="2"/><path d="M6 12h3m-1.5-1.5L6 12l1.5 1.5M14 12h4"/></svg>
+            <h3>Boots into RetroArch</h3>
+            <p>Boots directly into RetroArch for an instant gaming experience.</p>
+          </article>
+          <article class="card rv">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 3H16M12 3v10m0 0l-4-4m4 4l4-4M4 17h16v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg>
+            <h3>USB storage</h3>
+            <p>Supports external USB storage for adding game ROMs.</p>
+          </article>
+          <article class="card rv">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17h7M17.5 14v7"/></svg>
+            <h3>~50 Libretro cores</h3>
+            <p>Includes around 50 Libretro cores, with the ability to add more.</p>
+          </article>
+          <article class="card rv">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 9l2 2-2 2m5 0h4"/></svg>
+            <h3>SSH enabled</h3>
+            <p>SSH server enabled for remote access.</p>
+          </article>
+          <article class="card rv">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 9a12 12 0 0 1 16 0M7.5 13a7 7 0 0 1 9 0"/><circle cx="12" cy="18" r="1.4" fill="currentColor" stroke="none"/></svg>
+            <h3>WiFi via dongle</h3>
+            <p>Supports WiFi connectivity via an external USB WiFi dongle.</p>
+          </article>
+          <article class="card rv">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l8 4v4c0 5-3.5 8-8 10-4.5-2-8-5-8-10V7z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>
+            <h3>No copyrighted files</h3>
+            <p>No ROMs or copyrighted materials are included.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== INSTALL ===================== -->
+    <section class="section" id="install">
+      <div class="container">
+        <div class="terminal">
+          <div class="term-bar" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="title">install — 3 steps</span></div>
+          <div class="term-body">
+            <ol class="step-list" style="list-style:none;margin:0;padding:0;" start="1">
+              <li class="step">
+                <span class="step-num">1</span>
+                <div class="step-body">
+                  Download
+                  <a href="https://github.com/lucamot/GStickOS/releases/download/v1.0.1/GStickOS-1.0.1.zip">GStickOS image</a>
+                  and unzip it.
+                </div>
+              </li>
+              <li class="step">
+                <span class="step-num">2</span>
+                <div class="step-body">
+                  Flash the image to an SD card with
+                  <a href="https://win32diskimager.org">Win32 Disk Image</a>
+                  or similar.
+                </div>
+              </li>
+              <li class="step">
+                <span class="step-num">3</span>
+                <div class="step-body">
+                  Put the SD on your Game Stick Lite 4K and start playing!
+                </div>
+              </li>
             </ol>
+            <div class="term-cta">
+              <a class="btn btn-primary" href="https://github.com/lucamot/GStickOS/releases/download/v1.0.1/GStickOS-1.0.1.zip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+                GET THE IMAGE
+              </a>
+              <span class="hint muted small">Image &gt; 2 GB · SD card will be wiped when flashing — no turning back!</span>
+            </div>
+          </div>
         </div>
-        <div class="mt-6">
-            <div style="display: flex; justify-content: center; align-content: center"><a style="margin: auto; width: 400px;" href="https://www.buymeacoffee.com/lucamot"><img style="margin: auto" src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=lucamot&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a></div>
-        </div>
-    </main>
+      </div>
+    </section>
 
-    <footer class="bg-gray-800 p-4 text-center mt-12">
-        <p>&copy; 2025 GStickOS. All rights reserved.</p>
-    </footer>
+    <!-- ===================== SUPPORT ===================== -->
+    <section class="section section-tight" id="support">
+      <div class="container">
+        <span class="kicker rv">keep it running</span>
+        <h2 class="section-title rv">Made by one person, for the community.</h2>
+        <p class="lead rv" style="margin-top:1rem;">
+          GStickOS is a personal project — built from scratch, from the base OS (BusyBox) to RetroArch
+          and its cores. If it saves your evening, the best thanks is a small one.
+        </p>
+        <div class="support-grid" style="margin-top:1.8rem;">
+          <a class="support-card rv" href="https://www.buymeacoffee.com/lucamot" target="_blank" rel="noopener" aria-label="Support GStickOS on Buy Me a Coffee">
+            <img class="bmaco-img" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=lucamot&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" alt="Buy me a coffee" width="420" height="64" loading="lazy">
+          </a>
+          <a class="support-card rv" href="https://github.com/lucamot/GStickOS" target="_blank" rel="noopener" aria-label="GStickOS repository on GitHub">
+            <h3>Source &amp; toolchain</h3>
+            <p>Everything is built from a custom toolchain. The docker image with the full build
+               environment is on GitHub — recompile the whole thing, kernel included.</p>
+            <p><a href="https://github.com/lucamot/HiSTBLinuxV100R005C00SPC050" target="_blank" rel="noopener">HiSTBLinuxV100R005C00SPC050 →</a></p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <span class="foot-name">GSTICK<b>OS</b></span>
+      <span class="muted">&copy; 2025 GStickOS. All rights reserved.</span>
+      <span class="muted">Game Stick 4K Lite · Hi3798MV100 · 256 MB</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
 </body>
 </html>
-

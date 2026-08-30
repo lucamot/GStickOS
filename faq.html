@@ -1,111 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GStickOS - FAQ</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        function toggleAnswer(id, symbolId) {
-            const answer = document.getElementById(id);
-            const symbol = document.getElementById(symbolId);
-            answer.classList.toggle('hidden');
-            // Rotate the symbol when the answer is visible
-            symbol.classList.toggle('rotate-90');
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GStickOS - FAQ</title>
+  <meta name="description" content="Frequently asked questions about GStickOS: installation, hardware compatibility, ROMs, USB storage, WiFi, SSH, resizing the extended partition, hacking and contact.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" sizes="16x16" href="img/favicon-16.png">
+  <link rel="icon" sizes="32x32" href="img/favicon-32.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GStickOS">
+  <meta property="og:title" content="GStickOS — FAQ">
+  <meta property="og:description" content="Everything about installing and running GStickOS.">
+  <meta property="og:image" content="img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0a0c12">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is GStickOS?", "acceptedAnswer": { "@type": "Answer", "text": "GStickOS is a lightweight distribution aiming at replacing the original Game Stick 4K Lite firmware. It uses RetroArch as frontend instead of the original UI." } },
+      { "@type": "Question", "name": "How do I install GStickOS?", "acceptedAnswer": { "@type": "Answer", "text": "Download the latest image file from the website and flash it to an SD. To get started, try Win32DiskImager. Be sure to have an SD card that is 2GB or more, and remember that all the data on the SD will be wiped when you flash the image (there's no turning back!)." } },
+      { "@type": "Question", "name": "Is GStickOS compatible with my hardware?", "acceptedAnswer": { "@type": "Answer", "text": "It was created for the Game Stick 4K Lite with a Hi3798MV100 SoC and 256MB of RAM. If under System Information of the original firmware you have a version that says \"SEGAM-M8 2024-10-15\" or something similar, you have a compatible stick. Provided you have a backup of your original SD you can always try using the image: if it's compatible you'll see the RetroArch UI after you power it up." } },
+      { "@type": "Question", "name": "Will GStickOS make permanent changes to my stick?", "acceptedAnswer": { "@type": "Answer", "text": "No. You can always revert to the original stick by replacing the SD with the original one. Everything is saved on the SD card; the stick isn't touched in any way." } },
+      { "@type": "Question", "name": "How can I update GStickOS?", "acceptedAnswer": { "@type": "Answer", "text": "Updates for GStickOS can be installed via the built-in update system. Simply check for updates in the settings menu and follow the prompts to keep your system up to date." } },
+      { "@type": "Question", "name": "Is there a guide on how to use it?", "acceptedAnswer": { "@type": "Answer", "text": "No, not at the moment: you are on your own experimenting with it. There might be one in the future." } },
+      { "@type": "Question", "name": "What about games? Are there any included?", "acceptedAnswer": { "@type": "Answer", "text": "No, there are no ROMs included in the image: this would be a copyright violation of some sorts and you have to provide your own ROMs. There's a catch, however: if you have the original SD handy you can plug it in with a USB adapter and GStickOS will try loading it: you should then see it under /mnt/usb. Since there is only one USB port, having a USB hub is a strongly suggested option: you can connect a self-powered hub or even an unpowered one, given that you have a good power adapter, and the game stick will power all your peripherals without problems." } },
+      { "@type": "Question", "name": "How can I play games?", "acceptedAnswer": { "@type": "Answer", "text": "You need ROMs for that. To load ROMs, plug a USB stick and it will be automatically mounted by the system; you'll find it navigating with the RetroArch file browser under /mnt/sdXY. Simply plug a vFAT formatted USB key and you should see every file you have inside there. What to load on the USB key is outside the scope of this brief FAQ; you should look at the RetroArch documentation to know more about loading games, ROMs compatibility lists, etc." } },
+      { "@type": "Question", "name": "Is there WiFi connection?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, sort of: if you plug a WiFi dongle there's a popular driver built and loaded for it (RTL8188EU); if the WiFi dongle has this chip you're good to go. To configure the SSID/password you have to put a wpa_supplicant.conf file in the root folder of a USB stick, plug it in, and then reboot after a few seconds. GStickOS looks for a wpa_supplicant.conf file in every USB device as soon as you plug it in; if it finds one it will replace the internal configuration with the one provided." } },
+      { "@type": "Question", "name": "I want to SSH into GStickOS", "acceptedAnswer": { "@type": "Answer", "text": "You're welcome to do so: you can log in as root and the password is gstickos, all lower case. Beware that with root access you can do anything, even remove files that are needed for the OS to run. Anyway, if you do something wrong you can flash the image again and you'll be fine." } },
+      { "@type": "Question", "name": "I want to copy some files to the SD", "acceptedAnswer": { "@type": "Answer", "text": "That's ok: grab a program that is able to copy files over SCP (e.g. WinSCP) and use the root password above to transfer the files. My suggestion is to copy all the files under /mnt/extended, which is the largest partition on the SD. You can later see the files from the RetroArch UI by navigating to /mnt/extended or wherever you put your files." } },
+      { "@type": "Question", "name": "The extended partition is not large enough!", "acceptedAnswer": { "@type": "Answer", "text": "The extended partition (mounted under /mnt/extended/) is as big as the image you downloaded. If you put it on a large SD (e.g. > 2GB) you can resize the partition to take the full available space. It involves entering some commands on the terminal; there's no easy way yet: SSH into the stick, note the two RetroArch PIDs, kill them, umount /mnt/extended, run resize2fs on /dev/mmcblk0p5, wait for 'The filesystem size is now...', then reboot." } },
+      { "@type": "Question", "name": "I want to hack GStickOS", "acceptedAnswer": { "@type": "Answer", "text": "Fair enough, as long as you share your improvements with us :) Use Linux (a VM is ok too; don't use Windows, you'll regret it). GStickOS is BusyBox based. The SD is not mounted without your intervention. The SD contains two partitions (root fs and an extended partition); mount them with offsets of 10MB and 138MB. Everything is built from scratch with a custom toolchain — there's a docker image of the toolchain on GitHub with which you should be able to recompile everything, kernel included. After loading the docker image, source the env.sh file. Most cores build without modification, though some require small to big changes. Reach the Discord channel if you want to ask questions." } },
+      { "@type": "Question", "name": "I have so many questions, how can I contact you?", "acceptedAnswer": { "@type": "Answer", "text": "Join the Discord server (widget embedded on the page) — reach the Discord channel if you want to ask questions; the author is not always there but can try to answer your questions." } }
+    ]
+  }
+  </script>
 </head>
-<body class="bg-gray-900 text-white">
-    <header class="bg-gray-800 p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-4">
-                <img src="img/gstickos.jpg" alt="GStickOS Logo" class="h-10 rounded-lg object-contain">
-                <h1 class="text-2xl font-bold"><a href="index.html">GStickOS</a></h1>
-            </div>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="faq.html" class="hover:text-yellow-400">FAQ</a></li>
-                </ul>
-            </nav>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <div class="topbar" aria-hidden="true">
+    <div class="track">
+      <span class="seg">★ <b>FAQ</b> &nbsp;·&nbsp; INSTALL &nbsp;·&nbsp; COMPATIBILITY &nbsp;·&nbsp; ROMs &nbsp;·&nbsp; USB &nbsp;·&nbsp; WIFI &nbsp;·&nbsp; SSH &nbsp;·&nbsp; <b>DEV</b> &nbsp;·&nbsp; CONTACT &nbsp;·&nbsp; </span>
+      <span class="seg">★ <b>FAQ</b> &nbsp;·&nbsp; INSTALL &nbsp;·&nbsp; COMPATIBILITY &nbsp;·&nbsp; ROMs &nbsp;·&nbsp; USB &nbsp;·&nbsp; WIFI &nbsp;·&nbsp; SSH &nbsp;·&nbsp; <b>DEV</b> &nbsp;·&nbsp; CONTACT &nbsp;·&nbsp; </span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container bar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"><img src="img/gstickos.jpg" alt="" width="48" height="48"></span>
+        <span class="brand-name">GSTICK<b>OS</b></span>
+      </a>
+      <nav aria-label="Main">
+        <ul class="nav" style="list-style:none;margin:0;padding:0;display:flex;gap:1.5rem;">
+          <li><a href="index.html" data-nav="index.html">HOME</a></li>
+          <li><a href="faq.html" data-nav="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===================== FAQ header ===================== -->
+    <section class="section section-tight" aria-labelledby="faq-h">
+      <div class="container">
+        <span class="kicker rv">the manual</span>
+        <h1 class="section-title" id="faq-h" style="font-size:clamp(2.2rem,4.5vw,3.2rem);">Frequently Asked Questions</h1>
+        <p class="lead rv" style="margin-top:1rem;">
+          Everything that gets asked: installation, compatibility, ROMs, storage, networking,
+          remote access, resizing — and how to help out.
+        </p>
+        <!-- buy me a coffee (kept from original) -->
+        <div class="rv" style="margin-top:1.6rem;max-width:420px;">
+          <a href="https://www.buymeacoffee.com/lucamot" target="_blank" rel="noopener" aria-label="Support GStickOS on Buy Me a Coffee">
+            <img class="bmaco-img" src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=lucamot&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" alt="Buy me a coffee" width="420" height="64" loading="lazy">
+          </a>
         </div>
-    </header>
-    
-    <main class="container mx-auto py-12">
-        <h2 class="text-4xl font-bold text-center">FAQ</h2>
-        <div class="space-y-8 mt-8">
-            <div class="mt-6">
-                <div style="display: flex; justify-content: center; align-content: center"><a style="margin: auto; width: 400px" href="https://www.buymeacoffee.com/lucamot"><img style="margin: auto" src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=lucamot&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a></div>
-            </div>
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer1', 'symbol1')">
-                    <span id="symbol1" class="mr-2 transition-transform">></span>
-                    What is GStickOS?
-                </h3>
-                <p id="answer1" class="mt-2 text-lg hidden">GStickOS is a lightweight distribution aiming at replacing the original Game Stick 4K Lite firmware. It uses Retroarch as frontend instead of the original UI</p>
-            </div>
+      </div>
+    </section>
 
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer2', 'symbol2')">
-                    <span id="symbol2" class="mr-2 transition-transform">></span>
-                    How do I install GStickOS?
-                </h3>
-                <p id="answer2" class="mt-2 text-lg hidden">To install GStickOS, download the latest image file from the website and flash it to an SD. Depending on your OS and your level of expertise there are different options to flash the image on a SD card, however if you don't know how to start try with this: <a href="https://win32diskimager.org/">Win32 disk image</a>. Be sure to have an SD card that is 2GB or more and remember that all the data on the SD will be wiped when you flash the image (there's no turning back!)</p>
-            </div>
+    <!-- ===================== FAQ list + TOC ===================== -->
+    <section class="section section-tight">
+      <div class="container faq-grid">
+        <aside class="toc rv" aria-label="FAQ contents">
+          <h2 id="toc-h">On this page</h2>
+          <nav>
+            <ol class="toc-list">
+              <li><a data-target="q1" href="#q1">What is GStickOS?</a></li>
+              <li><a data-target="q2" href="#q2">How do I install GStickOS?</a></li>
+              <li><a data-target="q3" href="#q3">Is GStickOS compatible with my hardware?</a></li>
+              <li><a data-target="q4" href="#q4">Will GStickOS make permanent changes to my stick?</a></li>
+              <li><a data-target="q5" href="#q5">How can I update GStickOS?</a></li>
+              <li><a data-target="q6" href="#q6">Is there a guide on how to use it?</a></li>
+              <li><a data-target="q7" href="#q7">What about games? Are there any included?</a></li>
+              <li><a data-target="q8" href="#q8">How can I play games?</a></li>
+              <li><a data-target="q9" href="#q9">Is there WiFi connection?</a></li>
+              <li><a data-target="q11" href="#q11">I want to SSH into GStickOS</a></li>
+              <li><a data-target="q12" href="#q12">I want to copy some files to the SD</a></li>
+              <li><a data-target="q13" href="#q13">The extended partition is not large enough!</a></li>
+              <li><a data-target="q14" href="#q14">I want to hack GStickOS</a></li>
+              <li><a data-target="q15" href="#q15">I have so many questions, how can I contact you?</a></li>
+            </ol>
+          </nav>
+        </aside>
 
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer3', 'symbol3')">
-                    <span id="symbol3" class="mr-2 transition-transform">></span>
-                    Is GStickOS compatible with my hardware?
-                </h3>
-                <p id="answer3" class="mt-2 text-lg hidden">Well, it depends: I created it for my own Game Stick 4K Lite which has a Hi3798mv100 SoC with 256MB of RAM. As far as I can tell there are several versions of the same game stick and they all look almost the same but have different hardware release. You can tell you have a compatible stick if under System Information of the original firmware you have a version that says "SEGAM-M8 2024-10-15" or something similar. Provided you have a backup of your original SD you can always try using the image, it won't do any damage: if it's compatible you'll see Retroarch UI after you power it up.</p>
-            </div>
+        <div>
+          <!-- Q1 -->
+          <article class="faq-item" id="q1">
+            <button class="faq-q" aria-expanded="false" aria-controls="a1"><span class="mark" aria-hidden="true">+</span>What is GStickOS?</button>
+            <div class="faq-body" id="a1" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>GStickOS is a lightweight distribution aiming at replacing the original Game Stick 4K Lite firmware. It uses RetroArch as frontend instead of the original UI.</p>
+            </div></div></div>
+          </article>
 
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer11', 'symbol11')">
-                    <span id="symbol11" class="mr-2 transition-transform">></span>
-                    Will GStickOS makes permanent changes to my stick?
-                </h3>
-                <p id="answer11" class="mt-2 text-lg hidden">No. You can always revert to the original stick by replacing the SD with the original one. Everything is saved on the SD card, the stick isn't touched in any way.</p>
-            </div>
+          <!-- Q2 -->
+          <article class="faq-item" id="q2">
+            <button class="faq-q" aria-expanded="false" aria-controls="a2"><span class="mark" aria-hidden="true">+</span>How do I install GStickOS?</button>
+            <div class="faq-body" id="a2" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>To install GStickOS, download the latest image file from the website and flash it to an SD. Depending on your OS and your level of expertise there are different options to flash the image on an SD card — however, if you don't know how to start, try with <a href="https://win32diskimager.org/">Win32DiskImager</a>. Be sure to have an SD card that is <code>2GB</code> or more, and remember that all the data on the SD will be wiped when you flash the image (there's no turning back!)</p>
+            </div></div></div>
+          </article>
 
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer4', 'symbol4')">
-                    <span id="symbol4" class="mr-2 transition-transform">></span>
-                    How can I update GStickOS?
-                </h3>
-                <p id="answer4" class="mt-2 text-lg hidden">Updates for GStickOS can be installed via our built-in update system. Simply check for updates in the settings menu and follow the prompts to keep your system up to date.</p>
-            </div>
+          <!-- Q3 -->
+          <article class="faq-item" id="q3">
+            <button class="faq-q" aria-expanded="false" aria-controls="a3"><span class="mark" aria-hidden="true">+</span>Is GStickOS compatible with my hardware?</button>
+            <div class="faq-body" id="a3" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>Well, it depends. I created it for my own Game Stick 4K Lite which has a <code>Hi3798MV100</code> SoC with <code>256MB</code> of RAM. As far as I can tell there are several versions of the same game stick and they all look almost the same but have different hardware revisions. You can tell you have a compatible stick if, under <em>System Information</em> of the original firmware, you have a version that says <code>"SEGAM-M8 2024-10-15"</code> or something similar.</p>
+              <p>Provided you have a backup of your original SD you can always try using the image — it won't do any damage: if it's compatible you'll see the RetroArch UI after you power it up.</p>
+            </div></div></div>
+          </article>
 
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer10', 'symbol10')">
-                    <span id="symbol10" class="mr-2 transition-transform">></span>
-                    Is there a guide on how to use it?
-                </h3>
-                <p id="answer10" class="mt-2 text-lg hidden">No, not at the moment: you are on your own experimenting with it. There might be one in the future.</p>
-            </div>
+          <!-- Q4 -->
+          <article class="faq-item" id="q4">
+            <button class="faq-q" aria-expanded="false" aria-controls="a4"><span class="mark" aria-hidden="true">+</span>Will GStickOS make permanent changes to my stick?</button>
+            <div class="faq-body" id="a4" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>No. You can always revert to the original stick by replacing the SD with the original one. Everything is saved on the SD card — the stick isn't touched in any way.</p>
+            </div></div></div>
+          </article>
 
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer5', 'symbol5')">
-                    <span id="symbol5" class="mr-2 transition-transform">></span>
-                    What about games? Are there any included?
-                </h3>
-                <p id="answer5" class="mt-2 text-lg hidden">No, there are no ROMs included in the image: this would be a copyright violation of some sorts and you have to provide your own ROMs. There's a catch however: if you have the original SD handy you can plug it in with an USB adapter and GStickOS will try loading it: you should then see under /mnt/usb. Since there is only one USB port having a USB hub is a stronly suggested option: you can connect a self powered hub or even an unpowered one, given that you have a good power adapter the game stick will power all your peripherals without problems.</p>
-            </div>
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer6', 'symbol6')">
-                    <span id="symbol6" class="mr-2 transition-transform">></span>
-                    How can I play games?
-                </h3>
-                <p id="answer6" class="mt-2 text-lg hidden">You need ROMs for that. To load ROMs you can plug an USB stick and it will be automatically mounted by the system, you'll find it navigating with Retroarch file browser under /mnt/sdXY. You can simply plug a vFAT formatted USB key and you should see every file you have inside there. What to load on the USB key is outside the scope of this brief FAQ, you should look at Retroarch documentation to know more about loading games, ROMs compatibility lists etc.</p>
-            </div>
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer7', 'symbol7')">
-                    <span id="symbol7" class="mr-2 transition-transform">></span>
-                    Is there WiFi connection?
-                </h3>
-                <div id="answer7" class="mt-2 text-lg hidden">Yes, sort of: if you plug a WiFi dongle there a popular driver I built and loaded for it (RTL8188eu), if WiFi dongle has this chip you're good to go. To configure the SSID/password you have to put a wpa_supplicant.conf file in the root folder of a USB stick, plug it in and then reboot after a few seconds. GStickOS looks for wpa_supplicant.conf file in every USB device as soon as you plug it in, if it founds one it will replace the internal configuration with the one provided. This is a sample wpa_supplicant.conf file, update as needed:
-                    <code><pre class="mt-2">
-ctrl_interface=/var/run/wpa_supplicant
+          <!-- Q5 -->
+          <article class="faq-item" id="q5">
+            <button class="faq-q" aria-expanded="false" aria-controls="a5"><span class="mark" aria-hidden="true">+</span>How can I update GStickOS?</button>
+            <div class="faq-body" id="a5" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>Updates for GStickOS can be installed via the built-in update system. Simply check for updates in the settings menu and follow the prompts to keep your system up to date.</p>
+            </div></div></div>
+          </article>
+
+          <!-- Q6 -->
+          <article class="faq-item" id="q6">
+            <button class="faq-q" aria-expanded="false" aria-controls="a6"><span class="mark" aria-hidden="true">+</span>Is there a guide on how to use it?</button>
+            <div class="faq-body" id="a6" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>No, not at the moment: you are on your own experimenting with it. There might be one in the future.</p>
+            </div></div></div>
+          </article>
+
+          <!-- Q7 -->
+          <article class="faq-item" id="q7">
+            <button class="faq-q" aria-expanded="false" aria-controls="a7"><span class="mark" aria-hidden="true">+</span>What about games? Are there any included?</button>
+            <div class="faq-body" id="a7" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>No, there are no ROMs included in the image: this would be a copyright violation of some sorts and you have to provide your own ROMs.</p>
+              <p>There's a catch, however: if you have the original SD handy you can plug it in with a USB adapter and GStickOS will try loading it — you should then see it under <code>/mnt/usb</code>. Since there is only one USB port, having a USB hub is a <strong>strongly suggested</strong> option: you can connect a self-powered hub or even an unpowered one; given that you have a good power adapter, the game stick will power all your peripherals without problems.</p>
+            </div></div></div>
+          </article>
+
+          <!-- Q8 -->
+          <article class="faq-item" id="q8">
+            <button class="faq-q" aria-expanded="false" aria-controls="a8"><span class="mark" aria-hidden="true">+</span>How can I play games?</button>
+            <div class="faq-body" id="a8" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>You need ROMs for that. To load ROMs, plug a USB stick and it will be automatically mounted by the system — you'll find it navigating with the RetroArch file browser under <code>/mnt/sdXY</code>. You can simply plug a vFAT-formatted USB key and you should see every file you have inside there.</p>
+              <p>What to load on the USB key is outside the scope of this brief FAQ: you should look at the RetroArch documentation to know more about loading games, ROMs compatibility lists, etc.</p>
+            </div></div></div>
+          </article>
+
+          <!-- Q9 -->
+          <article class="faq-item" id="q9">
+            <button class="faq-q" aria-expanded="false" aria-controls="a9"><span class="mark" aria-hidden="true">+</span>Is there WiFi connection?</button>
+            <div class="faq-body" id="a9" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>Yes, sort of: if you plug a WiFi dongle, there's a popular driver built and loaded for it — <code>RTL8188EU</code>. If the WiFi dongle has this chip you're good to go.</p>
+              <p>To configure the SSID/password you have to put a <code>wpa_supplicant.conf</code> file in the root folder of a USB stick, plug it in, and then reboot after a few seconds. GStickOS looks for a <code>wpa_supplicant.conf</code> file in every USB device as soon as you plug it in; if it finds one, it will replace the internal configuration with the one provided. This is a sample <code>wpa_supplicant.conf</code> file — update as needed:</p>
+<pre class="code-block" data-label="wpa_supplicant.conf"><code>ctrl_interface=/var/run/wpa_supplicant
 update_config=1
 country=IT
 network={
@@ -116,80 +197,86 @@ network={
 network={
  ssid="my_2nd_network"
  psk="MyPassword1"
-}
-                        </pre></code>
-                </div>
-            </div>
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer8', 'symbol8')">
-                    <span id="symbol8" class="mr-2 transition-transform">></span>
-                    Why this page is so ugly?
-                </h3>
-                <p id="answer8" class="mt-2 text-lg hidden">That's because I don't like making web pages. Seriously: it takes a lot of time to build a compelling web page and at the moment I don't have much. You'll free to contribute anyway, if you want to update it somehow let me know!</p>
-            </div>
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer12', 'symbols12')">
-                    <span id="symbols12" class="mr-2 transition-transform">></span>
-                    I want to SSH into GStickOS
-                </h3>
-                <p id="answer12" class="mt-2 text-lg hidden">You're welcome to do so, you can login as root and the password is <code>gstickos</code>, all lower case. Beware that with root access you can do anything, even remove files that are needed for the OS to run. Anyway if you do something wrong you can flash again the image and you'll be fine.</p>
-            </div>
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer13', 'symbols13')">
-                    <span id="symbols13" class="mr-2 transition-transform">></span>
-                    I want to copy some files to the SD
-                </h3>
-                <p id="answer13" class="mt-2 text-lg hidden">That's ok: grab yourself a program that is able to copy files over SCP (e.g. WinSCP) and use the root password above to transfer the files. My suggestion is to copy all the files under <code>/mnt/extended</code>, which is the largest partition on the SD. You can later see the files from the Retroarch UI by navigating again to <code>/mnt/extended</code> or wherever you put your files.</p>
-            </div>
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer15', 'symbols15')">
-                    <span id="symbols13" class="mr-2 transition-transform">></span>
-                    The extended partition is not large enough!
-                </h3>
-                <div id="answer15" class="hidden">
-                    <p class="mt-2 text-lg">The extended partition (mounted under <code>/mnt/extended/</code>) is as big as the image you downloaded. If you put it on large SD (e.g. &gt; 2GB) you can resize the partition to take the full available space. It involves entering some commands on the terminal, there's no easy way yet:</p>
-                    <ul style="list-style: circle">
-                        <li>ssh into the stick from a terminal (yes, in this weird world even windows powershell can do ssh): "ssh root@STICK_IP", replacing with the IP of the stick on your network. The password is <code>gstickos</code></li>
-                        <li>enter the command <code>ps | grep retroarch</code> and note the first column of the first two rows (two numbers, usually something in the 1000 range). Let's say you got 1262 and 1272</li>
-                        <li>type <code>kill -9 1262 1272</code> with the numbers from the step above. This will kill retroarch (it's ok)</li>
-                        <li>type <code>umount /mnt/extended</code></li>
-                        <li>type <code>resize2f /mnt/mmcblk0p5</code></li>
-                        <li>wait, it might take long to finish: you can tell it did finish when a message starting with "The filesystem size is now" is shown</li>
-                        <li>type <code>reboot</code>, the stick will reboot and you should have your whole SD available</li>
-                    </ul>
-                </div>
-            </div>
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer14', 'symbols14')">
-                    <span id="symbols14" class="mr-2 transition-transform">></span>
-                    I want to hack GStickOS
-                </h3>
-                <div id="answer14" class="hidden">
-                    <p class="mt-2 text-lg">Fair enough, as long as you share your improvements with us :) Here are a few hints to get started:</p>
-                    <ul style="list-style: circle">
-                        <li>Use Linux. A virtual machine with it it's ok too. Don't use Windows, you'll regret it</li>
-                        <li>GStickOS is Busybox based. This, among other things, means you have to be comfortable using the CLI</li>
-                        <li>The SD is not mounted without your intervention: without being too technical, this is due to how they build the hardware of the stick and cannote be changed easily (you should flash a custom bootloader on an internal unlabelled chip, if you're into it let me know)</li>
-                        <li>The SD contains two partitions: a root fs and and extended partition. To mount them you have to specify an offset to the <code>mount</code> command. The offsets you need are 10MB and 138MB. Say you want to mount the extended partition, the command is <code>sudo mount -oloop,offset=$((138 * 1024 * 1024)) /dev/sdX /media/sd</code>. Be sure to specify the correct path of the sd (i.e. replace <code>/dev/sdX</code>) and mount point (i.e. <code>/media/sd</code>)</li>
-                        <li>Everything is built from scratch with a custom toolchain, from the base OS (Busybox) to Retroarch and its cores. I made a docker image of the toolchain (<a href="https://github.com/lucamot/HiSTBLinuxV100R005C00SPC050">here</a>) with wich you should be able to recompile everything, kernel included. A word of warning: using toolchains is the first step down the rabbit hole. My only clue here is that after you load the docker image you should source the <code>env.sh</code> file.</li>
-                        <li>Most cores build without modification: this mean that if you have your docker container running (and <code>env.sh</code> sourced) you should be able to just <code>make</code> them all. Some of them require small to big changes though, from updating some configurations to recompiling libraries and frameworks.</li>
-                        <li>It's easy to be stuck with the toolchain, especially because it's based on an older GCC (4.9.2) and the equivalent glibc. Reach the Discord channel if you want to ask questions, I'm not always there but I can try answer your questions.</li>
-                    </ul>
-                </div>
-            </div>
-            <div>
-                <h3 class="text-2xl font-semibold text-yellow-400 cursor-pointer flex items-center" onclick="toggleAnswer('answer9', 'symbol9')">
-                    <span id="symbol9" class="mr-2 transition-transform">></span>
-                    I have so many questions, how can I contact you?
-                </h3>
-                <p id="answer9" class="mt-2 text-lg hidden"><iframe src="https://discord.com/widget?id=1352581880762859631&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe></p>
-            </div>
-        </div>
-    </main>
+}</code></pre>
+            </div></div></div>
+          </article>
 
-    <footer class="bg-gray-800 p-4 text-center">
-        <p>&copy; 2025 GStickOS. All rights reserved.</p>
-    </footer>
+          <!-- Q11 -->
+          <article class="faq-item" id="q11">
+            <button class="faq-q" aria-expanded="false" aria-controls="a11"><span class="mark" aria-hidden="true">+</span>I want to SSH into GStickOS</button>
+            <div class="faq-body" id="a11" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>You're welcome to do so: you can log in as <code>root</code> and the password is <code>gstickos</code>, all lower case.</p>
+              <p>Beware that with root access you can do anything, even remove files that are needed for the OS to run. Anyway, if you do something wrong you can flash the image again and you'll be fine.</p>
+            </div></div></div>
+          </article>
+
+          <!-- Q12 -->
+          <article class="faq-item" id="q12">
+            <button class="faq-q" aria-expanded="false" aria-controls="a12"><span class="mark" aria-hidden="true">+</span>I want to copy some files to the SD</button>
+            <div class="faq-body" id="a12" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>That's ok: grab yourself a program that is able to copy files over SCP (e.g. <strong>WinSCP</strong>) and use the root password above to transfer the files. My suggestion is to copy all the files under <code>/mnt/extended</code>, which is the largest partition on the SD. You can later see the files from the RetroArch UI by navigating again to <code>/mnt/extended</code> or wherever you put your files.</p>
+            </div></div></div>
+          </article>
+
+          <!-- Q13 -->
+          <article class="faq-item" id="q13">
+            <button class="faq-q" aria-expanded="false" aria-controls="a13"><span class="mark" aria-hidden="true">+</span>The extended partition is not large enough!</button>
+            <div class="faq-body" id="a13" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>The extended partition (mounted under <code>/mnt/extended/</code>) is as big as the image you downloaded. If you put it on a large SD (e.g. <code>&gt; 2GB</code>) you can resize the partition to take the full available space. It involves entering some commands on the terminal — there's no easy way yet:</p>
+              <ul>
+                <li>SSH into the stick from a terminal (yes, in this weird world even Windows PowerShell can do SSH): <code>ssh root@STICK_IP</code>, replacing <code>STICK_IP</code> with the IP of the stick on your network. The password is <code>gstickos</code>.</li>
+                <li>Enter the command <code>ps | grep retroarch</code> and note the first column of the first two rows (two numbers, usually something in the 1000 range). Let's say you got <code>1262</code> and <code>1272</code>.</li>
+                <li>Type <code>kill -9 1262 1272</code> with the numbers from the step above. This will kill RetroArch (it's ok).</li>
+                <li>Type <code>umount /mnt/extended</code>.</li>
+                <li>Type <code>resize2fs /dev/mmcblk0p5</code>.</li>
+                <li>Wait — it might take long to finish. You can tell it did when a message starting with <em>"The filesystem size is now"</em> is shown.</li>
+                <li>Type <code>reboot</code>. The stick will reboot and you should have your whole SD available.</li>
+              </ul>
+            </div></div></div>
+          </article>
+
+          <!-- Q14 -->
+          <article class="faq-item" id="q14">
+            <button class="faq-q" aria-expanded="false" aria-controls="a14"><span class="mark" aria-hidden="true">+</span>I want to hack GStickOS</button>
+            <div class="faq-body" id="a14" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>Fair enough — as long as you share your improvements with us :) Here are a few hints to get started:</p>
+              <ul>
+                <li>Use Linux. A virtual machine with it is ok too. Don't use Windows — you'll regret it.</li>
+                <li>GStickOS is BusyBox based. This, among other things, means you have to be comfortable using the CLI.</li>
+                <li>The SD is not mounted without your intervention. Without being too technical, this is due to how they build the hardware of the stick and cannot be changed easily (you should flash a custom bootloader on an internal unlabelled chip — if you're into it, let me know).</li>
+                <li>The SD contains two partitions: a root fs and an extended partition. To mount them you have to specify an offset to the <code>mount</code> command; the offsets you need are <code>10MB</code> and <code>138MB</code>. Say you want to mount the extended partition — the command is:
+                  <pre class="code-block" data-label="mount extended"><code>sudo mount -o loop,offset=$((138 * 1024 * 1024)) /dev/sdX /media/sd</code></pre>
+                  Be sure to specify the correct path of the sd (i.e. replace <code>/dev/sdX</code>) and mount point (i.e. <code>/media/sd</code>).</li>
+                <li>Everything is built from scratch with a custom toolchain — from the base OS (BusyBox) to RetroArch and its cores. I made a docker image of the toolchain (<a href="https://github.com/lucamot/HiSTBLinuxV100R005C00SPC050" target="_blank" rel="noopener">here</a>) with which you should be able to recompile everything, kernel included. A word of warning: using toolchains is the first step down the rabbit hole. My only clue here is that, after you load the docker image, you should <code>source</code> the <code>env.sh</code> file.</li>
+                <li>Most cores build without modification: this means that if you have your docker container running (and <code>env.sh</code> sourced) you should be able to just <code>make</code> them all. Some of them require small to big changes though — from updating some configurations to recompiling libraries and frameworks.</li>
+                <li>It's easy to be stuck with the toolchain, especially because it's based on an older GCC (4.9.2) and the equivalent glibc. Reach the Discord channel if you want to ask questions — I'm not always there, but I can try to answer your questions.</li>
+              </ul>
+            </div></div></div>
+          </article>
+
+          <!-- Q15 -->
+          <article class="faq-item" id="q15">
+            <button class="faq-q" aria-expanded="false" aria-controls="a15"><span class="mark" aria-hidden="true">+</span>I have so many questions, how can I contact you?</button>
+            <div class="faq-body" id="a15" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
+              <p>Jump into the Discord — there's a channel for questions, and it's the best place to reach the author (who, as mentioned, is not always around but can try to answer your questions):</p>
+              <div class="dcard" style="max-width:350px;">
+                <iframe src="https://discord.com/widget?id=1352581880762859631&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" title="Discord server widget"></iframe>
+              </div>
+            </div></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <span class="foot-name">GSTICK<b>OS</b></span>
+      <span class="muted">&copy; 2025 GStickOS. All rights reserved.</span>
+      <a class="muted" href="index.html">← back to home</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
 </body>
 </html>
-
