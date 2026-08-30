@@ -24,20 +24,20 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "What is GStickOS?", "acceptedAnswer": { "@type": "Answer", "text": "GStickOS is a lightweight distribution aiming at replacing the original Game Stick 4K Lite firmware. It uses RetroArch as frontend instead of the original UI." } },
-      { "@type": "Question", "name": "How do I install GStickOS?", "acceptedAnswer": { "@type": "Answer", "text": "Download the latest image file from the website and flash it to an SD. To get started, try Win32DiskImager. Be sure to have an SD card that is 2GB or more, and remember that all the data on the SD will be wiped when you flash the image (there's no turning back!)." } },
-      { "@type": "Question", "name": "Is GStickOS compatible with my hardware?", "acceptedAnswer": { "@type": "Answer", "text": "It was created for the Game Stick 4K Lite with a Hi3798MV100 SoC and 256MB of RAM. If under System Information of the original firmware you have a version that says \"SEGAM-M8 2024-10-15\" or something similar, you have a compatible stick. Provided you have a backup of your original SD you can always try using the image: if it's compatible you'll see the RetroArch UI after you power it up." } },
-      { "@type": "Question", "name": "Will GStickOS make permanent changes to my stick?", "acceptedAnswer": { "@type": "Answer", "text": "No. You can always revert to the original stick by replacing the SD with the original one. Everything is saved on the SD card; the stick isn't touched in any way." } },
-      { "@type": "Question", "name": "How can I update GStickOS?", "acceptedAnswer": { "@type": "Answer", "text": "Updates for GStickOS can be installed via the built-in update system. Simply check for updates in the settings menu and follow the prompts to keep your system up to date." } },
-      { "@type": "Question", "name": "Is there a guide on how to use it?", "acceptedAnswer": { "@type": "Answer", "text": "No, not at the moment: you are on your own experimenting with it. There might be one in the future." } },
-      { "@type": "Question", "name": "What about games? Are there any included?", "acceptedAnswer": { "@type": "Answer", "text": "No, there are no ROMs included in the image: this would be a copyright violation of some sorts and you have to provide your own ROMs. There's a catch, however: if you have the original SD handy you can plug it in with a USB adapter and GStickOS will try loading it: you should then see it under /mnt/usb. Since there is only one USB port, having a USB hub is a strongly suggested option: you can connect a self-powered hub or even an unpowered one, given that you have a good power adapter, and the game stick will power all your peripherals without problems." } },
-      { "@type": "Question", "name": "How can I play games?", "acceptedAnswer": { "@type": "Answer", "text": "You need ROMs for that. To load ROMs, plug a USB stick and it will be automatically mounted by the system; you'll find it navigating with the RetroArch file browser under /mnt/sdXY. Simply plug a vFAT formatted USB key and you should see every file you have inside there. What to load on the USB key is outside the scope of this brief FAQ; you should look at the RetroArch documentation to know more about loading games, ROMs compatibility lists, etc." } },
-      { "@type": "Question", "name": "Is there WiFi connection?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, sort of: if you plug a WiFi dongle there's a popular driver built and loaded for it (RTL8188EU); if the WiFi dongle has this chip you're good to go. To configure the SSID/password you have to put a wpa_supplicant.conf file in the root folder of a USB stick, plug it in, and then reboot after a few seconds. GStickOS looks for a wpa_supplicant.conf file in every USB device as soon as you plug it in; if it finds one it will replace the internal configuration with the one provided." } },
-      { "@type": "Question", "name": "I want to SSH into GStickOS", "acceptedAnswer": { "@type": "Answer", "text": "You're welcome to do so: you can log in as root and the password is gstickos, all lower case. Beware that with root access you can do anything, even remove files that are needed for the OS to run. Anyway, if you do something wrong you can flash the image again and you'll be fine." } },
-      { "@type": "Question", "name": "I want to copy some files to the SD", "acceptedAnswer": { "@type": "Answer", "text": "That's ok: grab a program that is able to copy files over SCP (e.g. WinSCP) and use the root password above to transfer the files. My suggestion is to copy all the files under /mnt/extended, which is the largest partition on the SD. You can later see the files from the RetroArch UI by navigating to /mnt/extended or wherever you put your files." } },
-      { "@type": "Question", "name": "The extended partition is not large enough!", "acceptedAnswer": { "@type": "Answer", "text": "The extended partition (mounted under /mnt/extended/) is as big as the image you downloaded. If you put it on a large SD (e.g. > 2GB) you can resize the partition to take the full available space. It involves entering some commands on the terminal; there's no easy way yet: SSH into the stick, note the two RetroArch PIDs, kill them, umount /mnt/extended, run resize2fs on /dev/mmcblk0p5, wait for 'The filesystem size is now...', then reboot." } },
-      { "@type": "Question", "name": "I want to hack GStickOS", "acceptedAnswer": { "@type": "Answer", "text": "Fair enough, as long as you share your improvements with us :) Use Linux (a VM is ok too; don't use Windows, you'll regret it). GStickOS is BusyBox based. The SD is not mounted without your intervention. The SD contains two partitions (root fs and an extended partition); mount them with offsets of 10MB and 138MB. Everything is built from scratch with a custom toolchain — there's a docker image of the toolchain on GitHub with which you should be able to recompile everything, kernel included. After loading the docker image, source the env.sh file. Most cores build without modification, though some require small to big changes. Reach the Discord channel if you want to ask questions." } },
-      { "@type": "Question", "name": "I have so many questions, how can I contact you?", "acceptedAnswer": { "@type": "Answer", "text": "Join the Discord server (widget embedded on the page) — reach the Discord channel if you want to ask questions; the author is not always there but can try to answer your questions." } }
+      { "@type": "Question", "name": "What is GStickOS?", "acceptedAnswer": { "@type": "Answer", "text": "GStickOS is a lightweight distribution that replaces the original Game Stick 4K Lite firmware, swapping the stock interface for RetroArch as the front end." } },
+      { "@type": "Question", "name": "How do I install GStickOS?", "acceptedAnswer": { "@type": "Answer", "text": "Download the latest image from the website and flash it to an SD card of at least 2GB. There are several ways to write an image depending on your operating system, but if you are not sure where to start, Win32DiskImager is a reliable choice. Flashing the image erases everything on the card, so back up anything you need first." } },
+      { "@type": "Question", "name": "Is GStickOS compatible with my hardware?", "acceptedAnswer": { "@type": "Answer", "text": "Compatibility depends on your hardware revision. GStickOS was built for a Game Stick 4K Lite with a Hi3798MV100 SoC and 256MB of RAM. Check System Information in the original firmware: a version string such as \"SEGAM-M8 2024-10-15\" means your stick is compatible. If you have a backup of the original SD card you can always try the image, which causes no permanent damage; a compatible stick boots into the RetroArch UI." } },
+      { "@type": "Question", "name": "Will GStickOS make permanent changes to my stick?", "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs from the SD card and the stick's own hardware is never modified. To revert, simply replace the card with the original one." } },
+      { "@type": "Question", "name": "How do I update GStickOS?", "acceptedAnswer": { "@type": "Answer", "text": "GStickOS has a built-in update system. Open the settings menu, check for updates, and follow the on-screen prompts to install the latest version." } },
+      { "@type": "Question", "name": "Is there a guide for using it?", "acceptedAnswer": { "@type": "Answer", "text": "Not yet. The RetroArch interface is simple to explore on your own, and a usage guide is planned for the future." } },
+      { "@type": "Question", "name": "Are any games included?", "acceptedAnswer": { "@type": "Answer", "text": "No ROMs are included in the image, as they are subject to copyright, so you need to provide your own. If you still have the original SD card, plug it in through a USB adapter and GStickOS will detect it, making its contents available under /mnt/usb. The stick has a single USB port, so a USB hub (self-powered, or unpowered with a good power adapter) is strongly recommended." } },
+      { "@type": "Question", "name": "How do I load and play games?", "acceptedAnswer": { "@type": "Answer", "text": "You will need your own ROMs. Plug in a USB drive, which the system mounts automatically, and open the RetroArch file browser to /mnt/sdXY to see its contents. Any vFAT-formatted USB key works. Which cores to use for a given game, and which ROMs are compatible, is covered in the RetroArch documentation." } },
+      { "@type": "Question", "name": "Does GStickOS support WiFi?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, with a USB WiFi dongle based on the RTL8188EU chipset, for which a driver is built in. To connect, place a wpa_supplicant.conf file in the root folder of a USB stick, plug it in, wait a few seconds, then reboot. GStickOS scans every USB device on connection and, if it finds a wpa_supplicant.conf, it replaces the internal configuration with yours." } },
+      { "@type": "Question", "name": "How do I SSH into GStickOS?", "acceptedAnswer": { "@type": "Answer", "text": "SSH is open by default. Log in as root with the password gstickos (all lowercase). You have full root access and can change or delete anything, including files the system needs to run. If you break something, simply reflash the image to get back to a clean state." } },
+      { "@type": "Question", "name": "How do I copy files to the SD card?", "acceptedAnswer": { "@type": "Answer", "text": "Use any SCP/SFTP client (such as WinSCP) and the root credentials above to transfer files. Store them under /mnt/extended, the largest partition on the card, and browse them from the RetroArch UI." } },
+      { "@type": "Question", "name": "How do I resize the extended partition?", "acceptedAnswer": { "@type": "Answer", "text": "The extended partition (mounted at /mnt/extended) is only as large as the image you downloaded. If your SD card is bigger (for example, over 2GB), you can resize the partition to use the full space. There is no GUI for it yet, so run a few commands over SSH: SSH in, note the two RetroArch PIDs with ps | grep retroarch, kill them, umount /mnt/extended, run resize2fs /dev/mmcblk0p5, wait for the 'The filesystem size is now' message, then reboot." } },
+      { "@type": "Question", "name": "I want to hack on GStickOS, where do I start?", "acceptedAnswer": { "@type": "Answer", "text": "Go for it, as long as you share your improvements with the community. GStickOS is BusyBox-based, so be comfortable with the command line. The SD is not mounted automatically. The SD has two partitions (a root filesystem and an extended partition); mount them with offsets of 10MB and 138MB. Everything is built from scratch with a custom toolchain, and a docker image of it is on GitHub so you can recompile everything, kernel included. After loading the docker image, source the env.sh file. Most cores build without modification, though some need small to big changes. Reach the Discord channel if you have questions." } },
+      { "@type": "Question", "name": "How can I get in touch with the author?", "acceptedAnswer": { "@type": "Answer", "text": "The best way to reach out is the Discord server, which has a dedicated questions channel. The author is not always online but does their best to answer everything posted there." } }
     ]
   }
   </script>
@@ -98,16 +98,16 @@
               <li><a data-target="q2" href="#q2">How do I install GStickOS?</a></li>
               <li><a data-target="q3" href="#q3">Is GStickOS compatible with my hardware?</a></li>
               <li><a data-target="q4" href="#q4">Will GStickOS make permanent changes to my stick?</a></li>
-              <li><a data-target="q5" href="#q5">How can I update GStickOS?</a></li>
-              <li><a data-target="q6" href="#q6">Is there a guide on how to use it?</a></li>
-              <li><a data-target="q7" href="#q7">What about games? Are there any included?</a></li>
-              <li><a data-target="q8" href="#q8">How can I play games?</a></li>
-              <li><a data-target="q9" href="#q9">Is there WiFi connection?</a></li>
-              <li><a data-target="q11" href="#q11">I want to SSH into GStickOS</a></li>
-              <li><a data-target="q12" href="#q12">I want to copy some files to the SD</a></li>
-              <li><a data-target="q13" href="#q13">The extended partition is not large enough!</a></li>
-              <li><a data-target="q14" href="#q14">I want to hack GStickOS</a></li>
-              <li><a data-target="q15" href="#q15">I have so many questions, how can I contact you?</a></li>
+              <li><a data-target="q5" href="#q5">How do I update GStickOS?</a></li>
+              <li><a data-target="q6" href="#q6">Is there a guide for using it?</a></li>
+              <li><a data-target="q7" href="#q7">Are any games included?</a></li>
+              <li><a data-target="q8" href="#q8">How do I load and play games?</a></li>
+              <li><a data-target="q9" href="#q9">Does GStickOS support WiFi?</a></li>
+              <li><a data-target="q11" href="#q11">How do I SSH into GStickOS?</a></li>
+              <li><a data-target="q12" href="#q12">How do I copy files to the SD card?</a></li>
+              <li><a data-target="q13" href="#q13">How do I resize the extended partition?</a></li>
+              <li><a data-target="q14" href="#q14">I want to hack on GStickOS, where do I start?</a></li>
+              <li><a data-target="q15" href="#q15">How can I get in touch with the author?</a></li>
             </ol>
           </nav>
         </aside>
@@ -117,7 +117,7 @@
           <article class="faq-item" id="q1">
             <button class="faq-q" aria-expanded="false" aria-controls="a1"><span class="mark" aria-hidden="true">+</span>What is GStickOS?</button>
             <div class="faq-body" id="a1" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>GStickOS is a lightweight distribution aiming at replacing the original Game Stick 4K Lite firmware. It uses RetroArch as frontend instead of the original UI.</p>
+              <p>GStickOS is a lightweight distribution that replaces the original Game Stick 4K Lite firmware, swapping the stock interface for RetroArch as the front end.</p>
             </div></div></div>
           </article>
 
@@ -125,7 +125,8 @@
           <article class="faq-item" id="q2">
             <button class="faq-q" aria-expanded="false" aria-controls="a2"><span class="mark" aria-hidden="true">+</span>How do I install GStickOS?</button>
             <div class="faq-body" id="a2" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>To install GStickOS, download the latest image file from the website and flash it to an SD. Depending on your OS and your level of expertise there are different options to flash the image on an SD card — however, if you don't know how to start, try with <a href="https://win32diskimager.org/">Win32DiskImager</a>. Be sure to have an SD card that is <code>2GB</code> or more, and remember that all the data on the SD will be wiped when you flash the image (there's no turning back!)</p>
+              <p>Download the latest image from the website and flash it to an SD card of at least <code>2GB</code>. There are several ways to write an image depending on your operating system, but if you are not sure where to start, <a href="https://win32diskimager.org/">Win32DiskImager</a> is a reliable choice.</p>
+              <p>Flash it to the card and everything else follows from there. One important warning: writing the image erases whatever is on the card, so back up anything you need first — there is no going back once the flash starts.</p>
             </div></div></div>
           </article>
 
@@ -133,8 +134,9 @@
           <article class="faq-item" id="q3">
             <button class="faq-q" aria-expanded="false" aria-controls="a3"><span class="mark" aria-hidden="true">+</span>Is GStickOS compatible with my hardware?</button>
             <div class="faq-body" id="a3" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>Well, it depends. I created it for my own Game Stick 4K Lite which has a <code>Hi3798MV100</code> SoC with <code>256MB</code> of RAM. As far as I can tell there are several versions of the same game stick and they all look almost the same but have different hardware revisions. You can tell you have a compatible stick if, under <em>System Information</em> of the original firmware, you have a version that says <code>"SEGAM-M8 2024-10-15"</code> or something similar.</p>
-              <p>Provided you have a backup of your original SD you can always try using the image — it won't do any damage: if it's compatible you'll see the RetroArch UI after you power it up.</p>
+              <p>That depends on your hardware revision. GStickOS was built for a Game Stick 4K Lite with a <code>Hi3798MV100</code> SoC and <code>256MB</code> of RAM, and several revisions of this stick exist that look nearly identical on the outside but differ in hardware.</p>
+              <p>You can check yours under <em>System Information</em> in the original firmware: a version string such as <code>"SEGAM-M8 2024-10-15"</code> or something similar means you have a compatible stick.</p>
+              <p>If you have a backup of your original SD card, you can always try the image — it causes no permanent damage. A compatible stick will boot into the RetroArch UI.</p>
             </div></div></div>
           </article>
 
@@ -142,50 +144,51 @@
           <article class="faq-item" id="q4">
             <button class="faq-q" aria-expanded="false" aria-controls="a4"><span class="mark" aria-hidden="true">+</span>Will GStickOS make permanent changes to my stick?</button>
             <div class="faq-body" id="a4" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>No. You can always revert to the original stick by replacing the SD with the original one. Everything is saved on the SD card — the stick isn't touched in any way.</p>
+              <p>No. Everything runs from the SD card — the stick's own hardware is never modified in any way. To go back, simply put your original SD card in, and the stick is restored to its stock state.</p>
             </div></div></div>
           </article>
 
           <!-- Q5 -->
           <article class="faq-item" id="q5">
-            <button class="faq-q" aria-expanded="false" aria-controls="a5"><span class="mark" aria-hidden="true">+</span>How can I update GStickOS?</button>
+            <button class="faq-q" aria-expanded="false" aria-controls="a5"><span class="mark" aria-hidden="true">+</span>How do I update GStickOS?</button>
             <div class="faq-body" id="a5" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>Updates for GStickOS can be installed via the built-in update system. Simply check for updates in the settings menu and follow the prompts to keep your system up to date.</p>
+              <p>GStickOS has a built-in update system. Open the settings menu, check for updates, and follow the on-screen prompts to install the latest version.</p>
             </div></div></div>
           </article>
 
           <!-- Q6 -->
           <article class="faq-item" id="q6">
-            <button class="faq-q" aria-expanded="false" aria-controls="a6"><span class="mark" aria-hidden="true">+</span>Is there a guide on how to use it?</button>
+            <button class="faq-q" aria-expanded="false" aria-controls="a6"><span class="mark" aria-hidden="true">+</span>Is there a guide for using it?</button>
             <div class="faq-body" id="a6" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>No, not at the moment: you are on your own experimenting with it. There might be one in the future.</p>
+              <p>Not yet. The RetroArch interface is simple enough to explore on your own, and a usage guide is planned for the future.</p>
             </div></div></div>
           </article>
 
           <!-- Q7 -->
           <article class="faq-item" id="q7">
-            <button class="faq-q" aria-expanded="false" aria-controls="a7"><span class="mark" aria-hidden="true">+</span>What about games? Are there any included?</button>
+            <button class="faq-q" aria-expanded="false" aria-controls="a7"><span class="mark" aria-hidden="true">+</span>Are any games included?</button>
             <div class="faq-body" id="a7" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>No, there are no ROMs included in the image: this would be a copyright violation of some sorts and you have to provide your own ROMs.</p>
-              <p>There's a catch, however: if you have the original SD handy you can plug it in with a USB adapter and GStickOS will try loading it — you should then see it under <code>/mnt/usb</code>. Since there is only one USB port, having a USB hub is a <strong>strongly suggested</strong> option: you can connect a self-powered hub or even an unpowered one; given that you have a good power adapter, the game stick will power all your peripherals without problems.</p>
+              <p>No ROMs are included in the image — they are subject to copyright, so you need to provide your own.</p>
+              <p>One handy trick: if you still have the original SD card, plug it in through a USB adapter and GStickOS will detect it, making its contents available under <code>/mnt/usb</code>.</p>
+              <p>The stick has only one USB port, so a USB hub is <strong>strongly recommended</strong>. A self-powered hub works best, but an unpowered one is fine too if you have a good power adapter — the stick will power all your peripherals without issue.</p>
             </div></div></div>
           </article>
 
           <!-- Q8 -->
           <article class="faq-item" id="q8">
-            <button class="faq-q" aria-expanded="false" aria-controls="a8"><span class="mark" aria-hidden="true">+</span>How can I play games?</button>
+            <button class="faq-q" aria-expanded="false" aria-controls="a8"><span class="mark" aria-hidden="true">+</span>How do I load and play games?</button>
             <div class="faq-body" id="a8" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>You need ROMs for that. To load ROMs, plug a USB stick and it will be automatically mounted by the system — you'll find it navigating with the RetroArch file browser under <code>/mnt/sdXY</code>. You can simply plug a vFAT-formatted USB key and you should see every file you have inside there.</p>
-              <p>What to load on the USB key is outside the scope of this brief FAQ: you should look at the RetroArch documentation to know more about loading games, ROMs compatibility lists, etc.</p>
+              <p>You will need your own ROMs. Plug in a USB drive — the system mounts it automatically — and open the RetroArch file browser to <code>/mnt/sdXY</code> to see its contents. Any vFAT-formatted (FAT32/exFAT) USB key will work, and every file on it will show up.</p>
+              <p>Which cores to use for a given game, and which ROMs are compatible, is beyond the scope of this FAQ — the RetroArch documentation covers that in detail.</p>
             </div></div></div>
           </article>
 
           <!-- Q9 -->
           <article class="faq-item" id="q9">
-            <button class="faq-q" aria-expanded="false" aria-controls="a9"><span class="mark" aria-hidden="true">+</span>Is there WiFi connection?</button>
+            <button class="faq-q" aria-expanded="false" aria-controls="a9"><span class="mark" aria-hidden="true">+</span>Does GStickOS support WiFi?</button>
             <div class="faq-body" id="a9" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>Yes, sort of: if you plug a WiFi dongle, there's a popular driver built and loaded for it — <code>RTL8188EU</code>. If the WiFi dongle has this chip you're good to go.</p>
-              <p>To configure the SSID/password you have to put a <code>wpa_supplicant.conf</code> file in the root folder of a USB stick, plug it in, and then reboot after a few seconds. GStickOS looks for a <code>wpa_supplicant.conf</code> file in every USB device as soon as you plug it in; if it finds one, it will replace the internal configuration with the one provided. This is a sample <code>wpa_supplicant.conf</code> file — update as needed:</p>
+              <p>Yes — plug in a USB WiFi dongle. GStickOS ships with a driver for the <code>RTL8188EU</code> chipset, so a dongle built on that chip will work out of the box.</p>
+              <p>To connect, GStickOS reads a <code>wpa_supplicant.conf</code> file. Place one in the root folder of a USB stick, plug it in, wait a few seconds, then reboot: GStickOS scans every USB device on connection and, if it finds a <code>wpa_supplicant.conf</code>, it replaces the internal configuration with yours. Here is a sample configuration — edit it to match your network:</p>
 <pre class="code-block" data-label="wpa_supplicant.conf"><code>ctrl_interface=/var/run/wpa_supplicant
 update_config=1
 country=IT
@@ -203,62 +206,62 @@ network={
 
           <!-- Q11 -->
           <article class="faq-item" id="q11">
-            <button class="faq-q" aria-expanded="false" aria-controls="a11"><span class="mark" aria-hidden="true">+</span>I want to SSH into GStickOS</button>
+            <button class="faq-q" aria-expanded="false" aria-controls="a11"><span class="mark" aria-hidden="true">+</span>How do I SSH into GStickOS?</button>
             <div class="faq-body" id="a11" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>You're welcome to do so: you can log in as <code>root</code> and the password is <code>gstickos</code>, all lower case.</p>
-              <p>Beware that with root access you can do anything, even remove files that are needed for the OS to run. Anyway, if you do something wrong you can flash the image again and you'll be fine.</p>
+              <p>SSH is open by default. Log in as <code>root</code> with the password <code>gstickos</code> (all lowercase).</p>
+              <p>You are logging in as root, so you can change or delete anything — including files the system needs to run. Don't worry: if you break something, simply reflash the image and you'll be back to a clean state.</p>
             </div></div></div>
           </article>
 
           <!-- Q12 -->
           <article class="faq-item" id="q12">
-            <button class="faq-q" aria-expanded="false" aria-controls="a12"><span class="mark" aria-hidden="true">+</span>I want to copy some files to the SD</button>
+            <button class="faq-q" aria-expanded="false" aria-controls="a12"><span class="mark" aria-hidden="true">+</span>How do I copy files to the SD card?</button>
             <div class="faq-body" id="a12" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>That's ok: grab yourself a program that is able to copy files over SCP (e.g. <strong>WinSCP</strong>) and use the root password above to transfer the files. My suggestion is to copy all the files under <code>/mnt/extended</code>, which is the largest partition on the SD. You can later see the files from the RetroArch UI by navigating again to <code>/mnt/extended</code> or wherever you put your files.</p>
+              <p>Certainly — use any SCP/SFTP client (such as <strong>WinSCP</strong>) and the root credentials from above to transfer files. I recommend storing them under <code>/mnt/extended</code>, the largest partition on the card. You can then browse them straight from the RetroArch UI by navigating to <code>/mnt/extended</code> (or wherever you put them).</p>
             </div></div></div>
           </article>
 
           <!-- Q13 -->
           <article class="faq-item" id="q13">
-            <button class="faq-q" aria-expanded="false" aria-controls="a13"><span class="mark" aria-hidden="true">+</span>The extended partition is not large enough!</button>
+            <button class="faq-q" aria-expanded="false" aria-controls="a13"><span class="mark" aria-hidden="true">+</span>How do I resize the extended partition?</button>
             <div class="faq-body" id="a13" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>The extended partition (mounted under <code>/mnt/extended/</code>) is as big as the image you downloaded. If you put it on a large SD (e.g. <code>&gt; 2GB</code>) you can resize the partition to take the full available space. It involves entering some commands on the terminal — there's no easy way yet:</p>
+              <p>The extended partition (mounted at <code>/mnt/extended</code>) is only as large as the image you downloaded. If your SD card is bigger (for example, <code>&gt; 2GB</code>), you can resize the partition to use the full available space. There's no GUI for it yet, so you'll run a few commands over SSH:</p>
               <ul>
-                <li>SSH into the stick from a terminal (yes, in this weird world even Windows PowerShell can do SSH): <code>ssh root@STICK_IP</code>, replacing <code>STICK_IP</code> with the IP of the stick on your network. The password is <code>gstickos</code>.</li>
-                <li>Enter the command <code>ps | grep retroarch</code> and note the first column of the first two rows (two numbers, usually something in the 1000 range). Let's say you got <code>1262</code> and <code>1272</code>.</li>
-                <li>Type <code>kill -9 1262 1272</code> with the numbers from the step above. This will kill RetroArch (it's ok).</li>
+                <li>SSH into the stick from a terminal: <code>ssh root@STICK_IP</code>, replacing <code>STICK_IP</code> with the IP of the stick on your network. The password is <code>gstickos</code>.</li>
+                <li>Run <code>ps | grep retroarch</code> and note the first column of the first two rows — two numbers, usually somewhere in the 1000s. Suppose you got <code>1262</code> and <code>1272</code>.</li>
+                <li>Type <code>kill -9 1262 1272</code> using the numbers from the previous step. This stops RetroArch (it's fine).</li>
                 <li>Type <code>umount /mnt/extended</code>.</li>
                 <li>Type <code>resize2fs /dev/mmcblk0p5</code>.</li>
-                <li>Wait — it might take long to finish. You can tell it did when a message starting with <em>"The filesystem size is now"</em> is shown.</li>
-                <li>Type <code>reboot</code>. The stick will reboot and you should have your whole SD available.</li>
+                <li>Wait — it can take a while. You'll know it's done when a message starting with <em>"The filesystem size is now"</em> appears.</li>
+                <li>Type <code>reboot</code>. The stick restarts and your whole SD card is available.</li>
               </ul>
             </div></div></div>
           </article>
 
           <!-- Q14 -->
           <article class="faq-item" id="q14">
-            <button class="faq-q" aria-expanded="false" aria-controls="a14"><span class="mark" aria-hidden="true">+</span>I want to hack GStickOS</button>
+            <button class="faq-q" aria-expanded="false" aria-controls="a14"><span class="mark" aria-hidden="true">+</span>I want to hack on GStickOS, where do I start?</button>
             <div class="faq-body" id="a14" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>Fair enough — as long as you share your improvements with us :) Here are a few hints to get started:</p>
+              <p>Go for it — just share your improvements with the community. A few things to know before you start:</p>
               <ul>
-                <li>Use Linux. A virtual machine with it is ok too. Don't use Windows — you'll regret it.</li>
-                <li>GStickOS is BusyBox based. This, among other things, means you have to be comfortable using the CLI.</li>
-                <li>The SD is not mounted without your intervention. Without being too technical, this is due to how they build the hardware of the stick and cannot be changed easily (you should flash a custom bootloader on an internal unlabelled chip — if you're into it, let me know).</li>
-                <li>The SD contains two partitions: a root fs and an extended partition. To mount them you have to specify an offset to the <code>mount</code> command; the offsets you need are <code>10MB</code> and <code>138MB</code>. Say you want to mount the extended partition — the command is:
+                <li>Use Linux (a virtual machine is fine). Avoid Windows — you'll regret it.</li>
+                <li>GStickOS is BusyBox-based, which among other things means you should be comfortable with the command line.</li>
+                <li>The SD is not mounted without your intervention. Without going too deep, that's a consequence of how the stick's hardware is built and isn't easily changed (it means flashing a custom bootloader onto an internal, unlabelled chip — if that's your thing, let me know).</li>
+                <li>The SD holds two partitions: a root filesystem and an extended partition. To mount them you have to pass an offset to the <code>mount</code> command; the offsets you need are <code>10MB</code> and <code>138MB</code>. To mount the extended partition, for example:
                   <pre class="code-block" data-label="mount extended"><code>sudo mount -o loop,offset=$((138 * 1024 * 1024)) /dev/sdX /media/sd</code></pre>
-                  Be sure to specify the correct path of the sd (i.e. replace <code>/dev/sdX</code>) and mount point (i.e. <code>/media/sd</code>).</li>
-                <li>Everything is built from scratch with a custom toolchain — from the base OS (BusyBox) to RetroArch and its cores. I made a docker image of the toolchain (<a href="https://github.com/lucamot/HiSTBLinuxV100R005C00SPC050" target="_blank" rel="noopener">here</a>) with which you should be able to recompile everything, kernel included. A word of warning: using toolchains is the first step down the rabbit hole. My only clue here is that, after you load the docker image, you should <code>source</code> the <code>env.sh</code> file.</li>
-                <li>Most cores build without modification: this means that if you have your docker container running (and <code>env.sh</code> sourced) you should be able to just <code>make</code> them all. Some of them require small to big changes though — from updating some configurations to recompiling libraries and frameworks.</li>
-                <li>It's easy to be stuck with the toolchain, especially because it's based on an older GCC (4.9.2) and the equivalent glibc. Reach the Discord channel if you want to ask questions — I'm not always there, but I can try to answer your questions.</li>
+                  Be sure to use the correct device path (replace <code>/dev/sdX</code>) and mount point (replace <code>/media/sd</code>).</li>
+                <li>Everything is built from scratch with a custom toolchain — from the BusyBox base through RetroArch and its cores. I published a docker image of the toolchain (<a href="https://github.com/lucamot/HiSTBLinuxV100R005C00SPC050" target="_blank" rel="noopener">here</a>) with which you should be able to recompile everything, kernel included. One warning: toolchains are the first step down a rabbit hole. My one tip is that, after loading the docker image, you should <code>source</code> the <code>env.sh</code> file.</li>
+                <li>Most cores build without modification — with your docker container running and <code>env.sh</code> sourced, you should be able to <code>make</code> them all. Some require small to big changes, from updating configuration to recompiling libraries and frameworks.</li>
+                <li>It's easy to get stuck with the toolchain, especially since it's based on an older GCC (4.9.2) and matching glibc. Reach the Discord channel if you have questions — I'm not always around, but I'll do my best to answer.</li>
               </ul>
             </div></div></div>
           </article>
 
           <!-- Q15 -->
           <article class="faq-item" id="q15">
-            <button class="faq-q" aria-expanded="false" aria-controls="a15"><span class="mark" aria-hidden="true">+</span>I have so many questions, how can I contact you?</button>
+            <button class="faq-q" aria-expanded="false" aria-controls="a15"><span class="mark" aria-hidden="true">+</span>How can I get in touch with the author?</button>
             <div class="faq-body" id="a15" role="region" aria-hidden="true"><div class="faq-inner"><div class="faq-inner-pad">
-              <p>Jump into the Discord — there's a channel for questions, and it's the best place to reach the author (who, as mentioned, is not always around but can try to answer your questions):</p>
+              <p>The best way to reach out is the Discord server — there's a dedicated questions channel. I'm not always online, but I do my best to answer everything posted there:</p>
               <div class="dcard" style="max-width:350px;">
                 <iframe src="https://discord.com/widget?id=1352581880762859631&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" title="Discord server widget"></iframe>
               </div>
