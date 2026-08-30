@@ -383,6 +383,10 @@ pre.code-block code { font-family: var(--font-body); }
 .support-card { background: var(--panel); border: 1px solid var(--line); box-shadow: 8px 8px 0 rgba(0,0,0,.35); padding: 1.6rem; }
 .support-card h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; margin: 0 0 .6rem; color: #eef2f7; letter-spacing: .04em; }
 .support-card p { margin: 0 0 1rem; color: var(--ink-dim); }
+.support-card > p:last-child { margin-bottom: 0; }
+.support-link { font-size: .9375rem; }
+.support-link a { color: var(--acc); text-decoration: none; border-bottom: 1px solid transparent; }
+.support-link a:hover { border-bottom-color: var(--acc); }
 .bmaco-img { width: 100%; max-width: 420px; border: 0; }
 .dcard iframe { display: block; }
 
